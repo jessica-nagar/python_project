@@ -19,14 +19,23 @@ newUserMessage = "Welcome to our server!"
 @client.event
 async def on_member_join(member):
     print("Recognised that a member " + member.name + " joined")
-    try: 
-        await client.send_message(member, newUserMessage)
-        print("Sent message to " + member.name)
-    except:
-        print("Couldn't message " + member.name)
-    embed =discord.Embed(
-        title = "Welcome " + member.name + "!"
-    )
+    welcomechannel = await client.fetch_channel(909192549778989117)
+    print('Welcome')
+    print(client.user.name)
+    print('-----')
+    await welcomechannel.send(f"Welcome {member.mention}!")
+    print(f'{member.name} joined the server')
+
+
+    # try: 
+    #     await client.send_message(member, newUserMessage)
+    #     print("Sent message to " + member.name)
+    # except:
+    #     print("Couldn't message " + member.name)
+    # embed =discord.Embed(
+    #     title = "Welcome " + member.name + "!"
+    # )
+    
         
 #    role = discord.utils.get(member.server.roles, name="name-of-your-role")
 #    await client.add_roles(member, role)
