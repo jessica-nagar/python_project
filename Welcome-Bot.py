@@ -14,18 +14,26 @@ async def welcome_to():
     print(client.user.name)
     print('-----')
 
-newUserMessage = "Welcome to our server!"
-
 @client.event
 async def on_member_join(member):
     print("Recognised that a member " + member.name + " joined")
     welcomechannel = await client.fetch_channel(909192549778989117)
-    print('Welcome')
-    print(client.user.name)
-    print('-----')
     await welcomechannel.send(f"Welcome {member.mention}!")
     print(f'{member.name} joined the server')
 
+@client.event
+async def on_member_leave(member):
+    print("Recognised that a member " + member.name + " left")
+    welcomechannel = await client.fetch_channel(909192549778989117)
+    await welcomechannel.send(f"Goodbye {member.mention}!")
+    print(f'{member.name} left the server')
+
+# @client.event
+# async def on_member_leave(member): 
+#     print("Recognised that a member " + member.name + " left")
+#     welcomechannel = await client.fetch_channel(909192549778989117)
+#     await welcomechannel.send(f"Goodbye {member.mention} we will miss you!")
+#     print(f'{member.name} left the server')
 
     # try: 
     #     await client.send_message(member, newUserMessage)
@@ -41,11 +49,5 @@ async def on_member_join(member):
 #    await client.add_roles(member, role)
 #    print("Added role '" + role.name + "' to " + member.name)
 
-# @client.event
-# async def goodbye_fairwell(member):
-#     print("Recognised that a member " + member.name + " left")
-#     embed=discord.Embed(
-#         title="Goodbye "+member.name+"!",
-#     )
 
 client.run(os.getenv('TOKEN'))
