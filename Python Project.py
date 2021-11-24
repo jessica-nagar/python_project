@@ -1,5 +1,6 @@
 import discord
 import os
+import random
 
 client = discord.Client()
 
@@ -13,7 +14,12 @@ async def on_message(message):
         return
 
     if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+        hello_list = ["Hello friend!", "Hello! It's nice to see you.", "Hello! Hope you enjoy your day!"]
+        await message.channel.send(random.choice(hello_list))
+
+    if message.content.startswith('$bye'):
+        bye_list = ["Goodbye friend!", "Goodbye. Hope to see you soon.", "Goodbye. Save travels."]
+        await message.channel.send(random.choice(bye_list))
 
     if message.content.startswith("$version"):
         bot_test = client.get_channel(900825491961958430)
