@@ -23,7 +23,7 @@ async def on_ready():
     welcomechannel = await client.fetch_channel(909192549778989117)
     print('Welcome')
     print(client.user.name)
-    print('-----')
+    print('-----------------')
 
 @client.event
 async def on_member_join(member):
@@ -46,6 +46,8 @@ async def on_member_remove(member):
     await welcomechannel.send(f"Goodbye {member.mention}. We are going to miss you 😥! \nCome back soon!")
     print(f'{member.name} left the server')
 
+
+######## Message bot 
 
 @client.event
 async def on_message(message):
