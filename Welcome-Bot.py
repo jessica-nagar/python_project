@@ -1,7 +1,16 @@
 import discord
 import os
 import asyncio
+from discord.ext import commands 
+import music
 
+cogs = [music]
+
+client = commands.Bot(command_prefix = '?', intents = discord.Intents.all())
+
+for i in range (len(cogs)):
+    cogs[i].setup(client)
+    
 ######## Welcome bot 
 
 intents = discord.Intents(members = True)
@@ -32,8 +41,7 @@ async def on_disconnect():
 async def on_member_remove(member):
     print("Recognised that a member called " + member.name + " left")
     welcomechannel = await client.fetch_channel(909192549778989117)
-    await welcomechannel.send(f"Goodbye {member.mention}!")
+    await welcomechannel.send(f"Goodbye {member.mention}. We are going to miss you 😥! \nCome back soon!")
     print(f'{member.name} left the server')
-
 
 client.run(os.getenv('TOKEN'))
