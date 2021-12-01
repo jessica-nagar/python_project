@@ -12,7 +12,7 @@ import random
 # for i in range (len(cogs)):
 #     cogs[i].setup(client)
     
-######## Welcome bot 
+######## Welcome Bot/ Goodbye Bot 
 
 intents = discord.Intents.default()
 intents.members = True
@@ -72,5 +72,22 @@ async def on_message(message):
         myEmbed.set_author(name = "Version Update by: Jess and Mary")
 
         await bot_test.send(embed = myEmbed)
+
+###Banned Word Bot
+
+bad_words = ['apple']
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    message_split = message.content.split(".")
+
+    for message_word in message_split:
+        for bad_word in bad_words:
+            if bad_word == message_word.lower():
+                await message.delete()
+                await message.channel.send("😨 I have deleted your message... it is banned! 😳" +
+                "\nPlease don't do it again! 🙄")
+
 
 client.run(os.getenv('TOKEN'))
