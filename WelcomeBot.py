@@ -13,14 +13,22 @@ import random
 # for i in range (len(cogs)):
 #     cogs[i].setup(client)
     
-######## Welcome Bot/ Goodbye Bot 
-
+ 
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents = intents)
 
+
+### Welcome Bot
+# Author: Mary Moor
+# The purpose of this program is to have the bot recognise and then 
+# greet a new user in the server who has joined the server.
 @client.event
 async def on_ready():
+    """
+    This function will show in the terminal that a user has joined
+    the server. It will state this in the terminal, NOT discord.
+    """
     welcomechannel = await client.fetch_channel(909192549778989117)
     print('Welcome')
     print(client.user.name)
@@ -28,20 +36,43 @@ async def on_ready():
 
 @client.event
 async def on_member_join(member):
+    """
+    This function will show in the terminal that a it recognises 
+    the users name that has entered the server along with the user 
+    name. It will also display a welcome message to the user in the 
+    welcome channel. It will also show in the terminal that the 
+    users name it recognised has sucessfully joined the server. 
+    """
     print("Recognised that a member " + member.name + " joined")
     welcomechannel = await client.fetch_channel(909192549778989117)
     await welcomechannel.send(f"Welcome {member.mention}!")
     print(f'{member.name} joined the server')
 
+### Goodbye Bot 
+# Author: Mary Moor
+# The purpose of this program is to have the bot recognise and then 
+# say farewell to a new user in the server to the users leaving 
+# the server. 
 @client.event
 async def on_disconnect():
+    """
+    This function will show in the terminal that a user has left
+    the server. It will state this in the terminal, NOT discord.
+    """
     welcomechannel = await client.fetch_channel(909192549778989117)
-    print('Welcome')
+    print('Goodbye')
     print(client.user.name)
     print('-----')
 
 @client.event
 async def on_member_remove(member):
+    """
+    This function will show in the terminal that a it recognises 
+    the users name that is leaving the server along with the user 
+    name. It will also display a goodbye message to the user in the 
+    welcome channel. It will also show in the terminal that the 
+    users name it recognised has sucessfully left the server. 
+    """
     print("Recognised that a member called " + member.name + " left")
     welcomechannel = await client.fetch_channel(909192549778989117)
     await welcomechannel.send(f"Goodbye {member.mention}. We are going to miss you 😥! \nCome back soon!")
