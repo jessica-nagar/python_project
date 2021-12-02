@@ -130,10 +130,27 @@ async def on_message(message):
         await bot_test.send(embed = myEmbed)
 
 ###Banned Word Bot
+# Author : Mary Moor
+# The purpose of this code is to have the bot recognise that 
+# a user in the server has written and sent a word from the bad word
+# list. The bot will then delete the message and tell the user
+# why the message has been deleted. This can be detected in any of 
+# the server channles, where ever the user has written the bad word
+# is where the bot will delete and display its message. 
+
+# Note: This will only work if the user sends the word indivudally 
+# written, if the word is in a sentince it will not be recognised 
+# and errased. 
 
 bad_words = ['apple']
 @client.event
 async def on_message(message):
+    """
+    This function will have the bot recognise that a user 
+    has sent one of the bad words from the list of bad words. 
+    After this is recognised the bot will delete the message and
+    send a message to the user as to why their message was errased. 
+    """
     if message.author == client.user:
         return
     message_split = message.content.split(".")
