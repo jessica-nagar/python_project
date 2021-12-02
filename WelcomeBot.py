@@ -3,7 +3,7 @@ import os
 import asyncio
 import random
 
-### Music Bot ###
+### Music Bot ### WORK IN PROGRESS>>> MAY DELETE
 # import music
 
 # cogs = [music]
