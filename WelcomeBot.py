@@ -3,6 +3,7 @@ import os
 import asyncio
 import random
 
+### Music Bot ###
 # import music
 
 # cogs = [music]
@@ -47,25 +48,49 @@ async def on_member_remove(member):
     print(f'{member.name} left the server')
 
 
-######## Message bot 
-
+### Message bot 
+# Author : Jessica and Mary Moor 
+# The purpose of this code is to have the bot reply to a user when they write and send
+# a specific frase like '$hello'. We call this the Message Bot
 @client.event
 async def on_message(message):
     if message.author == client.user:
+        """
+        This function will 
+        """
         return
 
     if message.content.startswith('$hello'):
+        """
+        This function will recognize that the user has sent the
+        key frase '$hello' and the bot will reply to the user with one of the
+        following frases in the hello list below. This is randomized to get 
+        a different outcome each time! 
+        """
         hello_list = ["Hello friend!", "Hello! It's nice to see you.", "Hello! Hope you enjoy your day!"]
         await message.channel.send(random.choice(hello_list))
 
     if message.content.startswith('$bye'):
+        """
+        This function will recognize that the user has sent the
+        key frase '$bye' and the bot will reply to the user with one of the
+        following frases in the hello list below. This is randomized to get 
+        a different outcome each time!  
+        """
         bye_list = ["Goodbye friend!", "Goodbye. Hope to see you soon.", "Goodbye. Save travels."]
         await message.channel.send(random.choice(bye_list))
 
     if message.content.startswith("$version"):
+        """
+        This function is the version function. This will allow the user to display an 
+        outlined box with the parameters set here, only when a user writes and sends 
+        '$version' in the 'bot-tests' channel. This will tell the users what version 
+        we are currently working off of, and who updated it. 
+        """
         bot_test = client.get_channel(900825491961958430)
 
-        myEmbed = discord.Embed(title = "Current Verson", description = "The bot is in Version 2.0", color = 0x00ff00)
+        myEmbed = discord.Embed(title = "Current Verson", description = "The bot is in Version 2.0",
+         color = 0x00ff00)
         myEmbed.add_field(name = "Version Code: ", value = 'v2.0.0', inline = False)
         myEmbed.add_field(name = "Date Released: ", value = "November 23, 2021", inline = False)
         myEmbed.set_footer(text = "Version 1.0 done by Jess and Mary")
