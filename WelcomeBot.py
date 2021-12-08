@@ -83,7 +83,7 @@ async def on_member_remove(member):
 # Author : Jessica and Mary Moor 
 # The purpose of this code is to have the bot reply to a user when they write and send
 # a specific frase like '$hello'. We call this the Message Bot
-bad_words = ['apple']
+bad_words = ['apple', 'pizza', 'java', 'finals']
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -151,13 +151,13 @@ async def on_message(message):
     """
     if message.author == client.user:
         return
-    message_split = message.content.split(".")
+    message_split = message.content.split(" ")
 
     for message_word in message_split:
         for bad_word in bad_words:
             if bad_word == message_word.lower():
                 await message.delete()
                 await message.channel.send("😨 I have deleted your message... it is banned! 😳" +
-                "\nPlease don't do it again! 🙄")
+                "\nPlease don't do it again! 🙄" + "\n\n The banned word was: " + message_word + "\n")
 
 client.run(os.getenv('TOKEN'))
