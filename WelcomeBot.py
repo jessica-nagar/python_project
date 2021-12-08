@@ -3,81 +3,22 @@ import os
 import asyncio
 import random
 
+### Music Bot ### WORK IN PROGRESS>>> MAY DELETE
+# import music
+
+# cogs = [music]
+
+# client = commands.Bot(command_prefix = '?', intents = discord.Intents.all())
+
+# for i in range (len(cogs)):
+#     cogs[i].setup(client)
+    
+ 
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents = intents)
 
-### Music Bot ### WORK IN PROGRESS>>> MAY DELETE
-@client.event
-async def join(ctx):
-    channel = ctx.message.author.voice.channel
-    voice = get(client.voice_clients, guild=ctx.guild)
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
 
-
-# command to play sound from a youtube URL
-@client.event
-async def play(ctx, url):
-    YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-    FFMPEG_OPTIONS = {
-        'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-    voice = get(client.voice_clients, guild=ctx.guild)
-
-    if not voice.is_playing():
-        with YoutubeDL(YDL_OPTIONS) as ydl:
-            info = ydl.extract_info(url, download=False)
-        URL = info['url']
-        voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-        voice.is_playing()
-        await ctx.send('Bot is playing')
-
-# check if the bot is already playing
-    else:
-        await ctx.send("Bot is already playing")
-        return
-
-
-# command to resume voice if it is paused
-@client.event
-async def resume(ctx):
-    voice = get(client.voice_clients, guild=ctx.guild)
-
-    if not voice.is_playing():
-        voice.resume()
-        await ctx.send('Bot is resuming')
-
-
-# command to pause voice if it is playing
-@client.event
-async def pause(ctx):
-    voice = get(client.voice_clients, guild=ctx.guild)
-
-    if voice.is_playing():
-        voice.pause()
-        await ctx.send('Bot has been paused')
-
-
-# command to stop voice
-@client.event
-async def stop(ctx):
-    voice = get(client.voice_clients, guild=ctx.guild)
-
-    if voice.is_playing():
-        voice.stop()
-        await ctx.send('Stopping...')
-
-
-# command to clear channel messages
-@client.event
-async def clear(ctx, amount=5):
-    await ctx.channel.purge(limit=amount)
-    await ctx.send("Messages have been cleared")
-
-    
- 
 ### Welcome Bot
 # Author: Mary Moor
 # The purpose of this program is to have the bot recognise and then 
@@ -216,8 +157,7 @@ async def on_message(message):
         for bad_word in bad_words:
             if bad_word == message_word.lower():
                 await message.delete()
-                await message.channel.send("----------------------------------------------------" + 
-                "\n😨 I have deleted your message... it is banned! 😳" +
-                "\nPlease don't do it again! 🙄" + "\n\n The banned word was: " + message_word)
+                await message.channel.send("😨 I have deleted your message... it is banned! 😳" +
+                "\nPlease don't do it again! 🙄" + "\n\n The banned word was: " + message_word + "\n")
 
 client.run(os.getenv('TOKEN'))
