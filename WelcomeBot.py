@@ -2,55 +2,54 @@ import discord
 import os
 import asyncio
 import random
-import youtube_dl
+# import youtube_dl
 
- 
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents = intents)
 
-### Music Bot ### WORK IN PROGRESS>>> MAY DELETE
-class music(client.Cog):
-    def __init__(self, client):
-        self.client = client
+### Music Bot ### WORK IN PROGRESS
+# class music(client.Cog):
+#     def __init__(self, client):
+#         self.client = client
 
-    @client.event
-    async def join(self,ctx):
-        if ctx.author.voic is None:
-            await ctx.send ("You are not in a voice channel!")
-        voice_channel = ctx.author.voice.channel
-        if ctx.voice_client is None:
-            await voice_channel.connect()
-        else:
-            await ctx.voic.client.move_to(voice_channel)
+#     @client.event
+#     async def join(self,ctx):
+#         if ctx.author.voic is None:
+#             await ctx.send ("You are not in a voice channel!")
+#         voice_channel = ctx.author.voice.channel
+#         if ctx.voice_client is None:
+#             await voice_channel.connect()
+#         else:
+#             await ctx.voic.client.move_to(voice_channel)
 
-    @client.event
-    async def disconnect(self,ctx):
-        await ctx.voice_client.disconnect()
+#     @client.event
+#     async def disconnect(self,ctx):
+#         await ctx.voice_client.disconnect()
 
-    @client.event
-    async def play(self,ctx,url):
-        ctx.voice_client.stop()
-        FFMPEG_OPTIONS = {'before_options' : '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        YDL_OPTIONS = {'format':'bestaudio'}
-        vc = ctx.voice_client
+#     @client.event
+#     async def play(self,ctx,url):
+#         ctx.voice_client.stop()
+#         FFMPEG_OPTIONS = {'before_options' : '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+#         YDL_OPTIONS = {'format':'bestaudio'}
+#         vc = ctx.voice_client
 
-        with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
-            info = ydl.extract_info(url, download = False)
-            url2 = info['format'][0]['url']
-            source = await discord.FFmegOpusAudio.from_probe(url2,**FFMPEG_OPTIONS)
-            vc.play(source)
+#         with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
+#             info = ydl.extract_info(url, download = False)
+#             url2 = info['format'][0]['url']
+#             source = await discord.FFmegOpusAudio.from_probe(url2,**FFMPEG_OPTIONS)
+#             vc.play(source)
     
-    @client.event
-    async def pause(self, ctx):
-        await ctx.voice_client.pause()
-        await ctx.send("Pause ⏸")
+#     @client.event
+#     async def pause(self, ctx):
+#         await ctx.voice_client.pause()
+#         await ctx.send("Pause ⏸")
 
-    @client.event
-    async def resume(self,ctx):
-        await ctx.voice_client.resume()
-        await ctx.send("Resume ⏯")
-
+#     @client.event
+#     async def resume(self,ctx):
+#         await ctx.voice_client.resume()
+#         await ctx.send("Resume ⏯") 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ### Welcome Bot
 # Author: Mary Moor
