@@ -83,6 +83,7 @@ async def on_member_remove(member):
 # Author : Jessica and Mary Moor 
 # The purpose of this code is to have the bot reply to a user when they write and send
 # a specific frase like '$hello'. We call this the Message Bot
+bad_words = ['apple']
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -142,9 +143,6 @@ async def on_message(message):
 # written, if the word is in a sentince it will not be recognised 
 # and errased. 
 
-bad_words = ['apple']
-@client.event
-async def on_message(message):
     """
     This function will have the bot recognise that a user 
     has sent one of the bad words from the list of bad words. 
@@ -161,6 +159,5 @@ async def on_message(message):
                 await message.delete()
                 await message.channel.send("😨 I have deleted your message... it is banned! 😳" +
                 "\nPlease don't do it again! 🙄")
-
 
 client.run(os.getenv('TOKEN'))
