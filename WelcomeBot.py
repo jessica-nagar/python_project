@@ -157,7 +157,8 @@ async def on_message(message):
         for bad_word in bad_words:
             if bad_word == message_word.lower():
                 await message.delete()
-                await message.channel.send("😨 I have deleted your message... it is banned! 😳" +
-                "\nPlease don't do it again! 🙄" + "\n\n The banned word was: " + message_word + "\n")
+                await message.channel.send("----------------------------------------------------" + 
+                "\n😨 I have deleted your message... it is banned! 😳" +
+                "\nPlease don't do it again! 🙄" + "\n\n The banned word was: " + message_word)
 
 client.run(os.getenv('TOKEN'))
